@@ -27,8 +27,8 @@
 <meta name="apple-mobile-web-app-title" content="제주 일정">
 <meta name="format-detection" content="telephone=no">
 
-<link rel="preload" as="script" href="assets/app.ed53891c.js" fetchpriority="high">
-<link rel="stylesheet" href="assets/styles.ff4813fd.css">
+<link rel="preload" as="script" href="assets/app.93897c52.js" fetchpriority="high">
+<link rel="stylesheet" href="assets/styles.1aa64901.css">
 <style>
 #boot-fallback{
       max-width:600px;margin:0 auto;padding:56px 22px;
@@ -122,7 +122,20 @@
   </noscript>
   <div id="root"></div>
 
-  <script src="assets/app.ed53891c.js"></script>
+  <script src="assets/app.93897c52.js"></script>
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
+  <script>
+  /* Esc 로 팝업 닫기 — 메뉴가 펼쳐져 있으면 먼저 접습니다 */
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'Escape' && ev.keyCode !== 27) return;
+    var panel = document.querySelector('.sheet-panel');
+    if (!panel) return;
+    var opened = panel.querySelector('.menu-wrap.open');
+    if (opened) { opened.classList.remove('open'); ev.preventDefault(); return; }
+    var btn = panel.querySelector('button.absolute.right-4.top-4');
+    if (!btn) { var bs = panel.querySelectorAll('button'); btn = bs[bs.length - 1]; }
+    if (btn) { btn.click(); ev.preventDefault(); }
+  }, true);
+  </script>
 </body>
 </html>
