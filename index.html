@@ -1,167 +1,122 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>JEJU 2박3일 - 가족여행</title>
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#F4F4F6">
+
+<title>제주 2박 3일 · 9명 가족여행 일정</title>
+<meta name="description" content="9명 가족의 제주 2박 3일 일정표. 9.81파크, 만장굴, 에코랜드, 산방산, 원앤온리, 서귀포매일올레시장. 시간별로 눌러보면 상세 정보가 열립니다.">
+<link rel="canonical" href="https://jeju.example.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="제주 가족여행 일정표">
+<meta property="og:title" content="제주 2박 3일 · 9명 가족여행">
+<meta property="og:description" content="10/9-10/11 · 9.81파크, 만장굴, 에코랜드, 산방산, 원앤온리, 서귀포올레시장">
+<meta property="og:url" content="https://jeju.example.com/">
+<meta property="og:image" content="https://jeju.example.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="apple-mobile-web-app-title" content="제주 일정">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="preload" as="script" href="assets/app.f546092f.js" fetchpriority="high">
+<link rel="stylesheet" href="assets/styles.a818c2f1.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#F5F5F7;--card:#FFFFFF;--text:#1D1D1F;--sub:#86868B;--border:#E8E8ED;--peach:#FFE8D6;--mint:#D6F0E4;--blue:#D6E8FF;--yellow:#FFF4CC;--lav:#E8DDFF;--pink:#FFD6E0}
-body{font-family:Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-.wrap{max-width:480px;margin:0 auto;padding:20px 16px 120px}
-.header{padding:28px 20px 20px;background:var(--card);border-radius:28px;box-shadow:0 8px 24px rgba(0,0,0,0.06);margin-bottom:16px}
-.header h1{font-size:26px;font-weight:800;letter-spacing:-0.5px}
-.header .sub{margin-top:6px;color:var(--sub);font-size:13px}
-.badges{margin-top:14px;display:flex;gap:6px;flex-wrap:wrap}
-.badge{font-size:11px;padding:6px 10px;border-radius:20px;background:var(--bg);border:1px solid var(--border)}
-.day{background:var(--card);border-radius:24px;padding:18px 16px;margin-bottom:14px;box-shadow:0 4px 16px rgba(0,0,0,0.04)}
-.day-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.day-title{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}
-.day-pill{font-size:10px;padding:5px 9px;border-radius:20px;font-weight:700}
-.pill1{background:var(--peach)} .pill2{background:var(--mint)} .pill3{background:var(--blue)}
-.row{display:flex;gap:12px;padding:12px 6px;border-radius:16px;cursor:pointer;transition:all 0.2s;align-items:flex-start}
-.row:active{transform:scale(0.98);background:var(--bg)}
-.row.active{background:#FFF7ED;border:1px solid #FFD6A8;box-shadow:0 0 0 3px rgba(255,168,76,0.15)}
-.time{font-size:12px;font-weight:700;min-width:48px;color:var(--sub);padding-top:2px}
-.icon{width:36px;height:36px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.i-blue{background:var(--blue)} .i-orange{background:var(--peach)} .i-mint{background:var(--mint)} .i-yellow{background:var(--yellow)} .i-pink{background:var(--pink)} .i-lav{background:var(--lav)}
-.info{flex:1}
-.info h3{font-size:14px;font-weight:600}
-.info p{font-size:12px;color:var(--sub);margin-top:2px;line-height:1.4}
-.chev{color:#C7C7CC;margin-top:6px}
-.now-badge{font-size:9px;background:#FF6B35;color:white;padding:2px 6px;border-radius:10px;margin-left:6px;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
-.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(8px);display:none;z-index:100}
-.modal-bg.open{display:block}
-.sheet{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:480px;background:white;border-radius:28px 28px 0 0;transition:transform 0.35s cubic-bezier(0.32,0.72,0,1);z-index:101;max-height:85vh;overflow:auto}
-.sheet.open{transform:translateX(-50%) translateY(0)}
-.sheet-img{width:100%;height:200px;object-fit:cover;border-radius:28px 28px 0 0}
-.sheet-body{padding:20px}
-.sheet-body h2{font-size:20px;font-weight:800}
-.tagrow{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}
-.tag{font-size:11px;background:var(--bg);padding:5px 9px;border-radius:10px}
-.desc{font-size:13px;line-height:1.6;color:#3A3A3C;margin-top:12px;white-space:pre-line}
-.btn-close{width:100%;margin-top:16px;padding:14px;background:var(--text);color:white;border:none;border-radius:14px;font-weight:600}
-.small-help{font-size:11px;color:var(--sub);text-align:center;margin-top:12px}
+#boot-fallback{
+      max-width:600px;margin:0 auto;padding:56px 22px;
+      font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard",system-ui,sans-serif;
+      color:#3f3f46;-webkit-text-size-adjust:100%;
+    }
+    #boot-fallback h1{margin:0 0 6px;font-size:22px;font-weight:700;letter-spacing:-.02em;color:#18181b}
+    #boot-fallback p{margin:0 0 14px;font-size:15px;line-height:1.6;color:#71717a}
+    #boot-fallback ol{margin:0;padding-left:18px;font-size:14.5px;line-height:1.75;color:#52525b}
+    #boot-fallback .spin{
+      width:22px;height:22px;margin:0 0 20px;border-radius:50%;
+      border:2px solid rgba(0,0,0,.10);border-top-color:#18181b;
+      animation:bg-spin .8s linear infinite
+    }
+    @keyframes bg-spin{to{transform:rotate(360deg)}}
+    #boot-fallback pre{
+      margin:16px 0 0;padding:12px 14px;background:#fafafa;border:1px solid #e4e4e7;border-radius:12px;
+      font-size:11.5px;line-height:1.5;color:#52525b;white-space:pre-wrap;word-break:break-all;overflow-x:auto
+    }
+    #boot-fallback button{margin-top:18px;border:0;background:#18181b;color:#fff;font:inherit;font-size:15px;font-weight:600;padding:11px 20px;border-radius:980px;cursor:pointer}
+    #boot-fallback button:active{opacity:.75}
+    @media (prefers-reduced-motion: reduce){#boot-fallback .spin{animation:none}}
 </style>
+<script>
+/* boot guard - 화면이 안 그려질 때 흰 화면 대신 원인을 보여줍니다. */
+(function () {
+  var started = Date.now(), errs = [], settled = false;
+  function el(id) { return document.getElementById(id); }
+  function mounted() { var r = el('root'); return !!(r && r.firstChild); }
+
+  function paint(title, note) {
+    var f = el('boot-fallback'); if (!f) return;
+    var h = '<h1>' + title + '</h1><p>' + note + '</p><ol>' +
+      '<li>페이지를 새로고침해 주세요. 일시적인 네트워크 오류일 수 있습니다.</li>' +
+      '<li>계속 같으면 다른 네트워크(와이파이 &harr; 데이터)나 다른 브라우저로 열어 보세요.</li>' +
+      '<li>그래도 안 되면 아래 오류 내용을 그대로 보내 주세요.</li></ol>' +
+      '<button type="button" onclick="location.reload()">다시 시도</button>';
+    if (errs.length) h += '<pre>' + errs.join('\n\n').replace(/</g, '&lt;') + '</pre>';
+    f.innerHTML = h;
+  }
+
+  function record(e) {
+    var t = e && e.target;
+    if (t && t.tagName && /^(SCRIPT|LINK|IMG)$/.test(t.tagName)) {
+      errs.push('파일을 불러오지 못했습니다 → ' + (t.src || t.href || t.tagName));
+    } else {
+      var m = (e && (e.message || (e.error && e.error.message))) || '스크립트 오류';
+      errs.push(m + (e && e.filename ? '  @' + e.lineno + ':' + e.colno : ''));
+    }
+    if (!mounted()) paint('일정표를 불러오지 못했습니다', '아래 순서로 확인해 주세요.');
+  }
+
+  window.addEventListener('error', record, true);
+  window.addEventListener('unhandledrejection', function (e) {
+    errs.push('Promise: ' + ((e && e.reason && (e.reason.message || e.reason)) || '?'));
+    if (!mounted()) paint('일정표를 불러오지 못했습니다', '아래 순서로 확인해 주세요.');
+  });
+
+  var iv = setInterval(function () {
+    if (mounted()) {
+      if (!settled) { settled = true; var f = el('boot-fallback'); if (f && f.parentNode) f.parentNode.removeChild(f); }
+      clearInterval(iv); return;
+    }
+    if (Date.now() - started > 8000) {
+      clearInterval(iv);
+      paint('일정표를 불러오지 못했습니다', errs.length ? '아래 순서로 확인해 주세요.' : '응답이 너무 느립니다.');
+    }
+  }, 120);
+})();
+</script>
 </head>
 <body>
-<div class="wrap">
-<div class="header">
-<h1>제주 2박3일</h1>
-<div class="sub">10/9(목) ~ 10/11(토) · 애월 레이니데이 베이스</div>
-<div class="badges"><span class="badge">서울 3 + 울산 6</span><span class="badge">렌트카 2대</span><span class="badge">가족 최적 동선</span></div>
-</div>
+  <div id="boot-fallback">
+    <div class="spin"></div>
+    <h1>일정을 불러오는 중</h1>
+    <p>잠시만 기다려 주세요.</p>
+  </div>
+  <noscript>
+    <div style="max-width:600px;margin:0 auto;padding:56px 22px;font-family:-apple-system,'Apple SD Gothic Neo',sans-serif">
+      <h1 style="margin:0 0 8px;font-size:22px">자바스크립트가 필요합니다</h1>
+      <p style="color:#71717a;font-size:15px;line-height:1.6">
+        이 일정표는 자바스크립트로 그려집니다. 브라우저 설정에서 자바스크립트를 켠 뒤 새로고침해 주세요.
+      </p>
+    </div>
+  </noscript>
+  <div id="root"></div>
 
-<div id="days"></div>
-<div class="small-help" id="helpText"></div>
-</div>
-
-<div class="modal-bg" id="bg" onclick="closeM()"></div>
-<div class="sheet" id="sheet">
-<img id="mImg" class="sheet-img" src="">
-<div class="sheet-body">
-<h2 id="mTitle"></h2>
-<div class="tagrow" id="mTags"></div>
-<div class="desc" id="mDesc"></div>
-<button class="btn-close" onclick="closeM()">닫기</button>
-</div>
-</div>
-
-<script>
-const places={
-"rainy":{"title":"레이니데이","img":"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800","tags":["애월읍","감성숙소","오션뷰"],"desc":"공항에서 35분, 애월 중산간에 위치한 감성 숙소.\n앞은 바다, 뒤는 한라산 뷰. 9명이라 독채 2개 or 101/202 복층으로 나눠 쓰기 좋아요.\n체크인 15:00 / 체크아웃 11:00"},
-"ul_lunch":{"title":"울산팀 점심","img":"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800","tags":["공항근처","고기국수"],"desc":"12:30 도착 후 바로 공항 근처에서 점심 해결.\n추천: 올레국수, 우진해장국, 공항 근처 고기국수.\n서울팀 도착 전까지 여유 있게 식사 후 14:30 합류."},
-"981":{"title":"9.81 PARK","img":"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800","tags":["애월","액티비티","중·초딩 PICK"],"desc":"레이싱 카트 + AR 게임 결합 테마파크.\n중학생·초등학생 완전 취향저격, 4세는 키즈 코스 이용 가능.\n60대 부모님은 전망대에서 애월 바다 보며 휴식.\n예약 필수, 야간 개장까지 해요."},
-"oneonly":{"title":"원앤온리 카페","img":"https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800","tags":["애월","오션뷰","선셋"],"desc":"애월 바닷가 바로 앞 대형 베이커리 카페.\n통유리로 일몰 보기 최고. 빵이 맛있고 자리 넓어서 유모차·9명 단체도 편해요.\n981파크에서 5분 거리."},
-"manjang":{"title":"만장굴","img":"https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=800","tags":["세계자연유산","09:00-18:00","4,000원"],"desc":"2023년 낙석으로 닫혔다가 2026.05.30 재개장.\n총 길이 7.4km 중 1km 개방. 내부는 11도라 겉옷 필수.\n유모차는 입구 보관, 40분 코스. 매월 첫째 수요일 휴무."},
-"eco":{"title":"에코랜드 테마파크","img":"https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=800","tags":["곶자왈","기차","08:30-17:30"],"desc":"곶자왈 숲을 기차 타고 도는 곳. 4개 역마다 내려서 구경.\n유모차 탑승 가능, 60대 부모님도 편하게 관람.\n피크닉가든역 수유실·족욕 있음."},
-"sanbang":{"title":"산방산 주변 산책","img":"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800","tags":["용머리해안","산방산","산책"],"desc":"산방산 뷰 + 용머리해안 산책로. 경사 완만해서 부모님도 걷기 좋아요.\n바람 많이 부는 날은 용머리해안 통제될 수 있음.\n주차 후 카페에서 차 한잔하며 쉬기 좋음."},
-"olle_market":{"title":"서귀포매일올레시장","img":"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800","tags":["먹거리","야시장","현지인맛집"],"desc":"꼭 먹어야 할 4가지:\n· 과일모찌 (딸기/한라봉)\n· 한라봉주스 생과즙\n· 흑돼지고로케 (줄 길어요, 먼저 주문)\n· 오메기떡 (선물용)\n주차는 공영주차장 이용, 시장 안에 유모차 가능하지만 주말은 붐빔."}
-};
-
-const schedule=[
-{day:"DAY 1 · 애월에 안착",pill:"pill1",date:"2025-10-09",items:[
-{t:"12:30",id:"",title:"울산팀 제주 도착",sub:"렌트카 픽업",icon:"✈️",cls:"i-blue"},
-{t:"13:00",id:"ul_lunch",title:"울산팀 점심",sub:"공항 근처에서 해결 후 대기",icon:"🍜",cls:"i-orange"},
-{t:"14:30",id:"",title:"서울팀 도착 후 합류",sub:"공항 1층 게이트에서 만나기",icon:"🤝",cls:"i-mint"},
-{t:"15:00",id:"rainy",title:"레이니데이 체크인",sub:"애월로 이동 35분",icon:"🏡",cls:"i-yellow"},
-{t:"16:00",id:"981",title:"9.81 PARK",sub:"카트 + 액티비티 / 부모님은 전망 휴식",icon:"🏎️",cls:"i-lav"},
-{t:"18:00",id:"oneonly",title:"원앤온리 카페 & 석식",sub:"일몰 보며 빵+커피, 근처 흑돼지",icon:"☕",cls:"i-pink"}
-]},
-{day:"DAY 2 · 동쪽 투어",pill:"pill2",date:"2025-10-10",items:[
-{t:"08:30",id:"",title:"조식 & 출발",sub:"애월 → 조천 40분",icon:"🌅",cls:"i-yellow"},
-{t:"09:30",id:"eco",title:"에코랜드 테마파크",sub:"오픈런 추천, 기차 4개역",icon:"🚂",cls:"i-mint"},
-{t:"12:00",id:"",title:"함덕 점심",sub:"함덕해수욕장 근처",icon:"🍽️",cls:"i-orange"},
-{t:"13:30",id:"manjang",title:"만장굴",sub:"40분 관람, 겉옷 필수",icon:"🕳️",cls:"i-blue"},
-{t:"15:00",id:"",title:"애월 복귀 & 휴식",sub:"숙소 수영 or 카페",icon:"🏖️",cls:"i-yellow"},
-{t:"18:30",id:"",title:"애월 흑돼지 만찬",sub:"9명 예약 필수",icon:"🐷",cls:"i-pink"}
-]},
-{day:"DAY 3 · 남쪽 한바퀴 후 귀가",pill:"pill3",date:"2025-10-11",items:[
-{t:"09:00",id:"sanbang",title:"산방산 주변 산책",sub:"용머리해안 뷰, 40분",icon:"⛰️",cls:"i-mint"},
-{t:"11:00",id:"olle_market",title:"서귀포매일올레시장",sub:"과일모찌·한라봉주스·고로케·오메기떡",icon:"🛍️",cls:"i-orange"},
-{t:"13:00",id:"",title:"공항 이동",sub:"서귀포 → 공항 1시간",icon:"🚗",cls:"i-blue"},
-{t:"14:30",id:"",title:"공항 도착 & 체크인",sub:"기념품 정리",icon:"🧳",cls:"i-yellow"},
-{t:"15:30",id:"",title:"울산행 / 서울행·김포행 출발",sub:"15:30 울산팀 / 15:55 서울팀",icon:"✈️",cls:"i-blue"}
-]}
-];
-
-function render(){
-const wrap=document.getElementById('days');
-let html='';
-schedule.forEach(d=>{
-html+=`<div class="day"><div class="day-head"><div class="day-title">${d.day}</div><div class="day-pill ${d.pill}">${d.date}</div></div>`;
-d.items.forEach(it=>{
-const hasPlace=it.id && places[it.id];
-html+=`<div class="row" data-date="${d.date}" data-time="${it.t}" onclick="${hasPlace?`openM('${it.id}')`:''}"><div class="time">${it.t}</div><div class="icon ${it.cls}">${it.icon}</div><div class="info"><h3>${it.title}${hasPlace?' <span style="font-size:10px;color:#aaa">ⓘ</span>':''}</h3><p>${it.sub}</p></div><div class="chev">›</div></div>`;
-});
-html+='</div>';
-});
-wrap.innerHTML=html;
-checkNow();
-}
-
-function checkNow(){
-const now=new Date();
-const kst=new Date(now.toLocaleString('en-US',{timeZone:'Asia/Seoul'}));
-const y=kst.getFullYear(), m=kst.getMonth()+1, d=kst.getDate();
-const today=`${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
-const help=document.getElementById('helpText');
-const inTrip=today>='2025-10-09' && today<='2025-10-11';
-if(!inTrip){
-help.textContent='여행 기간(10/9~10/11)에만 NOW 표시가 활성화돼요';
-return;
-}
-const curMin=kst.getHours()*60+kst.getMinutes();
-let found=false;
-document.querySelectorAll('.row').forEach(r=>{
-if(r.dataset.date!==today) return;
-const [h,mm]=r.dataset.time.split(':').map(Number);
-const tMin=h*60+mm;
-if(!found && curMin>=tMin && curMin<tMin+90){
-r.classList.add('active');
-const badge=document.createElement('span');badge.className='now-badge';badge.textContent='NOW';r.querySelector('h3').appendChild(badge);
-found=true;
-}
-});
-help.textContent=found?'현재 진행 중인 일정에 NOW 표시 중':`오늘은 ${today} - 가장 가까운 일정에 NOW 표시`;
-}
-
-function openM(id){
-const p=places[id]; if(!p) return;
-document.getElementById('mImg').src=p.img;
-document.getElementById('mTitle').textContent=p.title;
-document.getElementById('mTags').innerHTML=p.tags.map(t=>`<span class="tag">${t}</span>`).join('');
-document.getElementById('mDesc').textContent=p.desc;
-document.getElementById('bg').classList.add('open');
-document.getElementById('sheet').classList.add('open');
-}
-function closeM(){
-document.getElementById('bg').classList.remove('open');
-document.getElementById('sheet').classList.remove('open');
-}
-render();
-</script>
+  <script src="assets/app.f546092f.js"></script>
+  <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
 </body>
 </html>
