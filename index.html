@@ -27,8 +27,8 @@
 <meta name="apple-mobile-web-app-title" content="제주 일정">
 <meta name="format-detection" content="telephone=no">
 
-<link rel="preload" as="script" href="assets/app.f546092f.js" fetchpriority="high">
-<link rel="stylesheet" href="assets/styles.a818c2f1.css">
+<link rel="preload" as="script" href="assets/app.25948bd0.js" fetchpriority="high">
+<link rel="stylesheet" href="assets/styles.afe75467.css">
 <style>
 #boot-fallback{
       max-width:600px;margin:0 auto;padding:56px 22px;
@@ -44,6 +44,7 @@
       animation:bg-spin .8s linear infinite
     }
     @keyframes bg-spin{to{transform:rotate(360deg)}}
+    #boot-fallback code{background:#f1f1f3;border-radius:5px;padding:1px 5px;font-size:.92em}
     #boot-fallback pre{
       margin:16px 0 0;padding:12px 14px;background:#fafafa;border:1px solid #e4e4e7;border-radius:12px;
       font-size:11.5px;line-height:1.5;color:#52525b;white-space:pre-wrap;word-break:break-all;overflow-x:auto
@@ -61,10 +62,15 @@
 
   function paint(title, note) {
     var f = el('boot-fallback'); if (!f) return;
-    var h = '<h1>' + title + '</h1><p>' + note + '</p><ol>' +
-      '<li>페이지를 새로고침해 주세요. 일시적인 네트워크 오류일 수 있습니다.</li>' +
-      '<li>계속 같으면 다른 네트워크(와이파이 &harr; 데이터)나 다른 브라우저로 열어 보세요.</li>' +
-      '<li>그래도 안 되면 아래 오류 내용을 그대로 보내 주세요.</li></ol>' +
+    var local = location.protocol === 'file:';
+    var steps = local
+      ? '<li><b>index.html 하나만</b> 내려받으면 열리지 않습니다. 압축을 풀어 <code>index.html</code>과 <code>assets</code> 폴더를 같은 위치에 두고 다시 열어 주세요.</li>' +
+        '<li>폴더 없이 파일 하나로 보고 싶으면 <b>jeju-single.html</b>을 여세요. 그 파일은 안에 모든 것이 들어 있습니다.</li>' +
+        '<li>배포된 주소로 접속하는 경우에는 이 안내가 뜨지 않습니다.</li>'
+      : '<li>페이지를 새로고침해 주세요. 일시적인 네트워크 오류일 수 있습니다.</li>' +
+        '<li>계속 같으면 다른 네트워크나 다른 브라우저로 열어 보세요.</li>' +
+        '<li>그래도 안 되면 아래 오류 내용을 그대로 보내 주세요.</li>';
+    var h = '<h1>' + title + '</h1><p>' + note + '</p><ol>' + steps + '</ol>' +
       '<button type="button" onclick="location.reload()">다시 시도</button>';
     if (errs.length) h += '<pre>' + errs.join('\n\n').replace(/</g, '&lt;') + '</pre>';
     f.innerHTML = h;
@@ -78,13 +84,13 @@
       var m = (e && (e.message || (e.error && e.error.message))) || '스크립트 오류';
       errs.push(m + (e && e.filename ? '  @' + e.lineno + ':' + e.colno : ''));
     }
-    if (!mounted()) paint('일정표를 불러오지 못했습니다', '아래 순서로 확인해 주세요.');
+    if (!mounted()) paint('일정표를 불러오지 못했습니다', (location.protocol==='file:'?'필요한 파일을 찾지 못했습니다.':'아래 순서로 확인해 주세요.'));
   }
 
   window.addEventListener('error', record, true);
   window.addEventListener('unhandledrejection', function (e) {
     errs.push('Promise: ' + ((e && e.reason && (e.reason.message || e.reason)) || '?'));
-    if (!mounted()) paint('일정표를 불러오지 못했습니다', '아래 순서로 확인해 주세요.');
+    if (!mounted()) paint('일정표를 불러오지 못했습니다', (location.protocol==='file:'?'필요한 파일을 찾지 못했습니다.':'아래 순서로 확인해 주세요.'));
   });
 
   var iv = setInterval(function () {
@@ -94,7 +100,7 @@
     }
     if (Date.now() - started > 8000) {
       clearInterval(iv);
-      paint('일정표를 불러오지 못했습니다', errs.length ? '아래 순서로 확인해 주세요.' : '응답이 너무 느립니다.');
+      paint('일정표를 불러오지 못했습니다', errs.length ? (location.protocol==='file:'?'필요한 파일을 찾지 못했습니다.':'아래 순서로 확인해 주세요.') : '응답이 너무 느립니다.');
     }
   }, 120);
 })();
@@ -116,7 +122,7 @@
   </noscript>
   <div id="root"></div>
 
-  <script src="assets/app.f546092f.js"></script>
+  <script src="assets/app.25948bd0.js"></script>
   <script>(function(){function m(a){var h=a.getAttribute("href");if(!h)return;try{var u=new URL(h,document.baseURI);if((u.protocol==="http:"||u.protocol==="https:")&&u.host!==location.host){a.target="_blank";a.rel="noopener noreferrer";}}catch(e){}}function s(){document.querySelectorAll("a[href]").forEach(m);}if(document.readyState!=="loading"){s();}else{document.addEventListener("DOMContentLoaded",s);}document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(a){m(a);}},true);})();</script>
 </body>
 </html>
