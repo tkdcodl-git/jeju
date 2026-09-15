@@ -1,0 +1,38 @@
+# 도두해녀의집 재료 소진 시 대안 3곳 — 되살리는 방법
+#
+# 2026-08-06 에 일단 제거했습니다. 확정되면 아래를 app.*.js 에 다시 붙이세요.
+#
+# 1) IM 에 사진 3개 추가 →  var IM={  바로 뒤에
+# 2) ts 에 항목 3개 추가 →  dodu:{id:"dodu"  바로 앞에 (콤마로 이어서)
+# 3) ff 에 3개 추가 →  dodu:{emoji:"\ud83d\udc1a"  바로 앞에
+# 4) CANDS 를 활성화 →  var CANDS={};  를 아래 CANDS 줄로 교체
+# 5) dodu 항목에 candLabel 추가 →  dodu:{id:"dodu",  뒤에 candLabel 삽입
+# 6) 파일명 해시 변경 + index.html 참조 2곳 수정 (preload, script src)
+#
+# 요약: 순옥이네명가(도보3분,10-22시,해녀운영,메뉴 가장 비슷) /
+#       삼성혈해물탕 도두점(도보3분,11-23시,064-749-5200) /
+#       도두 어부의 밥상(도보2분,10-21시,목휴무,070-5110-1201)
+
+## ── 1) IM
+SUNOK:GP+"AG9NLjBU_0inOB3VTGnHGoVh1hDDd5JEf4Kr-Nk6XzR1luN1S5DYDpdGWs-RtK4kzX_D1B3M7jbfGAxE5LS5B7o0sKEgMX55gMX7PQ0dJjYW8HwO_E26QU-FCd2RuMOU7qAw4DfVTE5HlRp95owh-g=s4800-w800-h600",
+SAMSUNG:GP+"AG9NLjDOgFR_cLjQPcOtJkGLFSzHeJIj-awkDjP2dBILDkwjc-aoPOCPW_TvAgxAbtAqTH0NrWPVYvTbHclnLhSweuxSd58DLxOy0gnDTe8j4KAHRZhwyogA2xaYLN5yBZZg7a5ypFQqUBjFIkYtNI3hSTE7SQ=s4800-w800-h600",
+EOBU:GP+"AG9NLjATcm9KInYz9AdaqSp-IAq6aqSGIDXnqKGjwtyo2biCT8JA0y6-YgtAqJgiIrsZ2TaEnNDYxDtg6QMyVnmV6KLpEjl7DiBr_b2mn_E0XVK30Pe2vdcwy9cH7IdfX-nUSjHEJFlyIP7zXIvvSg=s4800-w800-h600"
+
+## ── 2) ts
+sunok:{id:"sunok",name:"순옥이네명가",short:"순옥이네명가",emoji:"🦪",image:IM.SUNOK,backTo:"dodu",menu:"전복물회 · 전복해물탕 · 성게미역국",desc:"도보 3분 · 10:00~22:00 · 해녀가 운영, 메뉴가 가장 비슷",long:"도두해녀의집에서 걸어서 3분입니다. 이 집도 해녀가 직접 운영하며 그날 잡은 것으로 상을 차려서 메뉴 구성이 가장 비슷합니다. 전복물회와 전복해물탕, 성게미역국이 있어 그대로 대체할 수 있습니다. 매장이 넓고 주차가 편해 9명이 앉기에 무리가 없고, 밤 10시까지 열어 시간 압박도 없습니다. 평점 4.3에 리뷰 495개입니다.",address:"제주시 도공로 8",hours:"10:00-22:00 · 연중무휴 · 예약 없이 방문",tip:"도보 3분 · 메뉴 구성이 가장 비슷함",gradient:"from-[#D6E8FF] to-[#D6F0E4]",cat:"food"},
+samsung_dodu:{id:"samsung_dodu",name:"삼성혈해물탕 도두점",short:"삼성혈해물탕",emoji:"🍲",image:IM.SAMSUNG,backTo:"dodu",menu:"해물탕 · 산낙지 · 생선구이",desc:"도보 3분 · 11:00~23:00 · 한 냄비로 9명 해결",long:"도두해녀의집에서 걸어서 3분, 살아 있는 해산물을 그대로 끓이는 해물탕집입니다. 큰 냄비 하나로 여러 명이 나눠 먹고 마지막에 라면을 넣어 마무리하니 9명 주문이 간단합니다. 4세는 라면과 밥으로 해결되고, 부모님께도 뜨끈한 국물이 잘 맞습니다. 밤 11시까지 열어 후보 중 시간 여유가 가장 큽니다. 리뷰 627개에 평점 4.1입니다.",address:"제주시 도두항서7길 23",hours:"11:00-23:00 · 화요일만 21:00 마감 · 064-749-5200",tip:"도보 3분 · 해물탕 한 냄비면 9명 해결",gradient:"from-[#FFE8D6] to-[#FFF4CC]",cat:"food"},
+eobu:{id:"eobu",name:"도두 어부의 밥상",short:"어부의 밥상",emoji:"🐟",image:IM.EOBU,backTo:"dodu",menu:"갈치조림 · 우럭조림 · 회덮밥 · 물회",desc:"도보 2분 · 평점 4.4 · 갈치·우럭조림",long:"도두해녀의집에서 걸어서 2분, 후보 중 평점이 가장 높습니다. 갈치조림과 우럭조림이 대표이고 물회와 회덮밥도 있습니다. 조림은 밥과 먹기 좋아 부모님 만족도가 높고 반찬 인심도 좋다는 후기가 많습니다. 주차장이 넓습니다. 다만 목요일이 휴무이니 요일을 먼저 확인하세요.",address:"제주시 서해안로 181",hours:"10:00-21:00 · 목요일 휴무 · 070-5110-1201",tip:"도보 2분 · 목요일 휴무 주의",gradient:"from-[#FFD6E0] to-[#FFE8D6]",cat:"food"}
+
+## ── 3) ff
+sunok:{emoji:"🦪",bg:"#D6E8FF",shadow:"shadow-[#D6E8FF]/70"},
+samsung_dodu:{emoji:"🍲",bg:"#FFE8D6",shadow:"shadow-[#FFE8D6]/70"},
+eobu:{emoji:"🐟",bg:"#FFD6E0",shadow:"shadow-[#FFD6E0]/70"}
+
+## ── 4) CANDS
+var CANDS={dodu:["sunok","samsung_dodu","eobu"]};
+
+## ── 5) candLabel
+candLabel:"재료 소진 시 대안 3곳 · 모두 걸어서 3분 안",
+
+## ── 6) dodu 설명 뒤에 붙일 문장
+ 만약 재료가 떨어졌다면 아래 세 곳이 모두 걸어서 3분 안에 있으니 그대로 옮기면 됩니다.

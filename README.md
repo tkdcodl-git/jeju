@@ -1,56 +1,91 @@
 # 제주 2박 3일 · 9명 가족여행 일정표
 
-빌드 없는 **정적 사이트**입니다. `index.html`이 있는 이 폴더가 그대로 배포 루트입니다.
+빌드 과정이 없는 **정적 사이트**입니다. **이 저장소의 루트가 그대로 배포 루트**이고, `index.html` 이 최상단에 있습니다.
 
 ---
 
-## ⚠️ 404: NOT_FOUND 가 났다면
+## GitHub 에 올리기
 
-Vercel이 `index.html`을 **루트에서 찾지 못한 것**입니다. 거의 항상 아래 둘 중 하나입니다.
+### 방법 A — 웹에서 드래그 (터미널 없이)
 
-**1) 폴더가 한 겹 더 들어가 있다**
+1. GitHub 에서 새 저장소를 만듭니다. **README·.gitignore·라이선스는 체크하지 마세요.** (빈 저장소여야 업로드 화면이 바로 나옵니다)
+2. 빈 저장소 화면의 **uploading an existing file** 을 누릅니다.
+3. 압축을 푼 `jeju-itinerary` 폴더를 **연 다음**, 폴더 자체가 아니라 **안에 있는 항목을 전부 선택**해서(⌘A / Ctrl+A) 드래그합니다.
+   `assets` 같은 하위 폴더도 함께 끌면 경로가 유지됩니다.
+4. **Commit changes** 를 누릅니다.
 
-깃 저장소나 업로드한 폴더가 이런 모양이면 루트에 `index.html`이 없어서 404가 납니다.
+> ⚠️ **폴더를 통째로 끌면 안 됩니다.** `jeju-itinerary/index.html` 처럼 한 겹 더 들어가서 Vercel 이 404 를 냅니다.
+> ⚠️ 웹 업로드는 **한 번에 100개**까지입니다. 이 저장소는 94개라 한 번에 들어갑니다.
+> ⚠️ 웹 드래그는 `.gitignore` · `.vercelignore` 같은 **점으로 시작하는 파일을 건너뜁니다.** 없어도 사이트는 정상 동작합니다. 필요하면 **Add file → Create new file** 로 이름을 직접 입력해 만드세요.
 
-```
-저장소/
-└── jeju-vercel/        ← 한 겹 더 들어감
-    └── index.html
-```
-
-해결은 두 가지 중 하나입니다.
-
-- 저장소 루트로 파일을 옮긴다 (`jeju-vercel/` 안의 내용을 한 단계 위로)
-- 또는 Vercel → **Settings → Build and Deployment → Root Directory**에 `jeju-vercel` 을 입력하고 재배포
-
-CLI로 올릴 때는 **반드시 `index.html`이 있는 폴더 안에서** `vercel` 을 실행하세요.
+### 방법 B — 터미널 (폴더 통째로, 가장 확실함)
 
 ```bash
-cd jeju-vercel      # ← 이 폴더 안에서
+cd jeju-itinerary          # ← 반드시 이 폴더 안에서
+git init -b main
+git add -A
+git commit -m "제주 가족여행 일정표"
+git remote add origin https://github.com/<아이디>/<저장소>.git
+git push -u origin main
+```
+
+점 파일까지 그대로 올라가고 폴더 구조도 어긋나지 않습니다.
+
+---
+
+## Vercel 에 배포하기
+
+**1. 도메인 먼저 넣기** — OG 태그와 canonical 은 절대 URL 이 필요합니다.
+
+```bash
+./set-domain.sh https://내도메인.com    # index.html, sitemap.xml, robots.txt 일괄 치환
+```
+
+**2. Vercel 에서 Import** — Add New → Project → 이 저장소 선택 → Deploy.
+
+`vercel.json` 에 `framework: null`, `buildCommand: null`, `outputDirectory: "."` 를 명시해 두었으니 설정은 건드릴 것이 없습니다.
+
+CLI 로 올린다면 **반드시 `index.html` 이 있는 폴더 안에서** 실행하세요.
+
+```bash
 vercel --prod
 ```
 
+---
+
+## 404: NOT_FOUND 가 났다면
+
+Vercel 이 `index.html` 을 **루트에서 찾지 못한 것**입니다. 거의 항상 아래 둘 중 하나입니다.
+
+**1) 폴더가 한 겹 더 들어가 있다**
+
+```
+저장소/
+└── jeju-itinerary/     ← 한 겹 더 들어감
+    └── index.html
+```
+
+해결은 둘 중 하나입니다.
+
+- 저장소 루트로 파일을 옮긴다
+- 또는 Vercel → **Settings → Build and Deployment → Root Directory** 에 `jeju-itinerary` 를 입력하고 재배포
+
 **2) 프레임워크 프리셋이 잘못 잡혔다**
 
-Vercel이 Vite·Next 등으로 오인하면 빌드를 돌리고 비어 있는 `dist`를 서빙해 404가 납니다.
-Settings → **Framework Preset = Other**, **Build Command 비움**, **Output Directory 비움**으로 두세요.
-이번 `vercel.json`에 `framework: null`, `buildCommand: null`, `outputDirectory: "."`를 명시해 두었으니 새로 배포하면 자동으로 교정됩니다.
+Vercel 이 Vite·Next 등으로 오인하면 빌드를 돌리고 비어 있는 `dist` 를 서빙해 404 가 납니다.
+Settings → **Framework Preset = Other**, **Build Command 비움**, **Output Directory 비움** 으로 두세요.
 
 ---
 
-## 로컬에서 그냥 열어 보고 싶을 때
+## 로컬에서 확인하기
 
-`index.html`만 따로 내려받으면 **열리지 않습니다.** `assets/` 폴더가 같은 위치에 있어야 합니다.
+`index.html` 만 따로 내려받으면 **열리지 않습니다.** `assets/` 폴더가 같은 위치에 있어야 합니다.
 
-```
-같은 폴더에 나란히 ↓
-index.html
-assets/
+```bash
+python3 -m http.server 4000    # http://localhost:4000
 ```
 
-폴더 없이 파일 하나로 보려면 **`jeju-single.html`** 을 쓰세요. CSS·JS·사진이 모두 안에 들어 있어서
-어디에 두고 더블클릭해도 열리고, 카카오톡·메일로 파일 자체를 보내도 상대방이 바로 볼 수 있습니다.
-(단, 이 파일은 배포용이 아닙니다. Vercel에는 `jeju-vercel` 폴더를 올리세요.)
+모든 경로가 **상대 경로**라서 `index.html` 을 그냥 더블클릭해도 열립니다.
 
 ---
 
@@ -58,88 +93,29 @@ assets/
 
 ```
 index.html                  6KB   껍데기 + 메타태그 + 부팅 가드
-assets/app.*.js           169KB   React 앱 (해시 파일명 → 영구 캐시)
+assets/app.*.js           196KB   React 앱 (해시 파일명 → 영구 캐시)
 assets/styles.*.css        47KB   Tailwind + 회색 테마 + 데스크톱 레이아웃
-assets/img/*.webp         371KB   만장굴·에코랜드 사진 (상세창 열 때만 로드)
+assets/img/*.webp                 장소 사진 9장 (상세창 열 때만 로드)
+assets/menu/*.webp                메뉴 사진 32장
 og.jpg                    244KB   카카오톡·슬랙 공유 미리보기 (1200×630)
 favicon.svg / icon-*.png          파비콘, 홈 화면 아이콘
 site.webmanifest                  홈 화면에 추가하면 앱처럼 실행
 vercel.json                       캐시·보안 헤더, 루트 폴백
 robots.txt / sitemap.xml
 set-domain.sh                     도메인 일괄 치환
+.vercelignore                     build/ · source/ · HANDOVER.md 는 배포 제외
+
+build/                            일정·지도 계산 스크립트 (legs.py · geomap.py)
+source/                           메뉴판·장소 사진 원본
+HANDOVER.md                       데이터 구조와 수정 규칙 — 이어서 작업할 때 이 문서부터
 ```
 
 첫 화면 전송량 약 **222KB** (gzip 후 60KB 내외). 사진은 상세창을 열 때만 내려받습니다.
 
-모든 경로가 **상대 경로**라서, 배포 전에 `index.html`을 그냥 더블클릭해도 그대로 열립니다.
-
 ---
 
-## 배포 순서
+## 고칠 때 반드시 지킬 것
 
-**1. 도메인 먼저 넣기** — OG 태그와 canonical은 절대 URL이 필요합니다.
+`assets/` 는 **1년 immutable 캐시**입니다. 파일을 고치면 **파일명 해시를 바꾸고 `index.html` 의 두 곳(preload, script src)도 함께** 바꿔야 합니다. 이름이 같으면 방문자 브라우저에 옛 파일이 계속 남습니다.
 
-```bash
-./set-domain.sh https://jeju.mydomain.com
-```
-
-`index.html`, `sitemap.xml`, `robots.txt`가 한 번에 교체됩니다.
-(윈도우면 세 파일에서 `https://jeju.example.com`을 찾아 바꿔 주세요.)
-
-**2. 배포**
-
-```bash
-npm i -g vercel
-vercel login
-cd jeju-vercel     # index.html이 있는 폴더
-vercel --prod
-```
-
-`Which directory is your code located in?` → 그냥 엔터.
-Framework는 **Other**, Build Command는 **비움**.
-
-또는 GitHub 연동:
-
-```bash
-git init && git add . && git commit -m "제주 일정표"
-git branch -M main
-git remote add origin https://github.com/<계정>/<저장소>.git
-git push -u origin main
-```
-
-**3. 도메인 연결** — Settings → Domains
-
-| 대상 | 레코드 | 값 |
-|---|---|---|
-| 루트 (`mydomain.com`) | A | `76.76.21.21` |
-| 서브도메인 (`jeju.mydomain.com`) | CNAME | `cname.vercel-dns.com` |
-
-도메인을 붙인 뒤 **1번을 다시 실행하고 재배포**해야 공유 미리보기가 정상 동작합니다.
-
-**4. 확인**
-
-- 아이폰 Safari → 공유 → **홈 화면에 추가** (주소창 없이 앱처럼 열립니다)
-- 카카오톡에 링크 붙여 미리보기 확인. 안 보이면 [카카오 디버거](https://developers.kakao.com/tool/debugger/sharing)에서 캐시를 초기화하세요.
-
----
-
-## 내용 수정
-
-일정 데이터는 `assets/app.*.js` 안의 `var ts={...},ff={...},JA=[...]` 세 곳에 모여 있습니다.
-
-- `ts` — 장소별 설명·주소·운영시간·팁
-- `ff` — 장소별 이모지와 색
-- `JA` — 날짜별 시간표 (`time`, `placeId`, `dur`)
-- `WI` — 날짜별 컨셉 색 (호버·NOW 강조에 그대로 쓰입니다)
-
-**파일을 고치면 파일명의 해시를 바꾸고 `index.html`의 두 곳(`preload`, `script src`) 참조도 함께 바꿔 주세요.**
-`assets/`는 1년 immutable로 캐싱되므로, 이름이 같으면 방문자 브라우저에 옛 파일이 남습니다.
-
-## 참고
-
-- 화면이 안 그려지면 흰 화면 대신 **오류 내용과 실패한 파일 경로**가 표시되고 '다시 시도' 버튼이 나옵니다.
-- 데스크톱(1024px↑)에서는 3일치가 **3단으로 나란히** 보이고, 상세창은 화면 중앙 모달로 뜹니다.
-- **"지금" 강조는 여행 날짜(10/9·10/10·10/11)에만** 뜹니다. 그 날짜에 해당 시각 구간의 항목 하나만 강조되고, 여행 기간이 아니면 아무것도 강조되지 않습니다.
-- 식사 항목은 목록에서 **아침식사·점심식사·저녁식사**로만 보이고, 식당 이름은 아래 작은 글씨와 팝업 제목에 나옵니다.
-- **팝업 사진 중 만장굴·에코랜드만 이 저장소에 들어 있습니다.** 나머지 장소 사진은 Google 지도 사용자 사진을 직접 링크합니다. 링크가 만료되거나 차단되면 사진 대신 이모지 카드가 자동으로 표시되므로 화면이 깨지지는 않습니다. 직접 찍은 사진으로 바꾸려면 `assets/img/`에 넣고 `app.*.js`의 `IM` 목록에서 해당 URL만 교체하세요.
-- `robots.txt`는 검색 노출을 **허용**합니다. 가족만 볼 페이지면 파일 안의 두 줄을 서로 바꿔 주세요.
+자세한 내용은 `HANDOVER.md` 를 보세요.
