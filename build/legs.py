@@ -12,35 +12,31 @@ DAYS = {
  ],
  'd2':[
   ('breakfast2',   '08:30', 30, 50,'차량'),
-  ('ecoland',      '09:50',150,  5,'차량'),   # 2시간 30분 · 여유 0
-  ('gyorae_lunch', '12:25', 70, 35,'차량'),
-  ('manjanggul',   '14:20', 80, 25,'차량'),
-  ('delmoondo',    '16:05', 30,  5,'도보'),
-  ('hamdeok',      '16:40', 40, 60,'차량'),
-  ('ssangdungi',   '18:20', 90, 60,'차량'),
-  ('stay_night2',  '20:50',  0,  0, None),
+  ('ecoland',      '09:50',150, 15,'차량'),   # 2시간 30분 · 동화마을까지 번영로 15분
+  ('seongsanbom',  '12:35', 60,  5,'도보'),   # 동화마을 안이라 걸어서 바로
+  ('donghwa',      '13:40',150, 60,'차량'),   # 2시간 30분 + 여유 10분 · 서귀포까지 1시간
+  ('ssangdungi',   '17:20', 90,  5,'도보'),   # 올레시장 입구라 걸어서
+  ('olle_market',  '18:55', 45, 60,'차량'),   # DAY 3 에서 옮겨 옴
+  ('stay_night2',  '20:40',  0,  0, None),
  ],
  'd3':[
   ('breakfast3',   '08:30', 40,  0, None),
   ('checkout3',    '09:10', 10, 40,'차량'),
   ('oneandonly',   '10:00', 35,  5,'도보'),
   ('sanbangsan',   '10:40', 40, 22,'차량'),
-  ('donsuyug',     '11:45', 55, 10,'차량'),
-  ('olle_market',  '12:50', 30, 70,'차량'),
-  ('airport',      '14:30', 50,  0, None),
+  ('donsuyug',     '11:45', 55, 60,'차량'),   # 점심 후 바로 공항 (올레시장은 DAY 2 저녁으로)
+  ('airport',      '13:40', 50,  0, None),
   ('departure',    '15:55',  0,  0, None),
  ],
 }
 SHORT={'jamae':'자매국수','seoul_join':'제주공항','activekart':'액티브카트','rainyday':'숙소',
  'suksungdo':'숙성도 애월점','hanaro':'하나로마트','stay_night':'숙소','stay_night2':'숙소',
- 'ecoland':'에코랜드','gyorae_lunch':'도리골토종닭','manjanggul':'만장굴','delmoondo':'델문도',
- 'hamdeok':'함덕해변','ssangdungi':'쌍둥이횟집','checkout3':'체크아웃','sanbangsan':'산방산',
+ 'ecoland':'에코랜드','seongsanbom':'성산봄','donghwa':'동화마을','ssangdungi':'쌍둥이횟집','checkout3':'체크아웃','sanbangsan':'산방산',
  'oneandonly':'원앤온리','donsuyug':'돈수육','olle_market':'올레시장','airport':'제주공항',
  'departure':'탑승게이트'}
 SHORT_SELF={'ulsan_arrival':'제주공항','jamae':'자매국수','seoul_join':'제주공항',
  'activekart':'액티브카트','suksungdo':'숙성도','hanaro':'하나로마트','breakfast2':'숙소',
- 'ecoland':'에코랜드','gyorae_lunch':'도리골토종닭','manjanggul':'만장굴','delmoondo':'델문도',
- 'hamdeok':'함덕해변','ssangdungi':'쌍둥이횟집','breakfast3':'숙소','checkout3':'숙소',
+ 'ecoland':'에코랜드','seongsanbom':'성산봄','donghwa':'동화마을','ssangdungi':'쌍둥이횟집','breakfast3':'숙소','checkout3':'숙소',
  'oneandonly':'원앤온리','sanbangsan':'산방산','donsuyug':'돈수육','olle_market':'올레시장',
  'airport':'제주공항'}
 COLOR={'d1':('#E0906B','#F0BE9E'),'d2':('#5FAE99','#93CDBB'),'d3':('#7C9FD1','#AEC6E4')}

@@ -15,7 +15,7 @@
 4. **Commit changes** 를 누릅니다.
 
 > ⚠️ **폴더를 통째로 끌면 안 됩니다.** `jeju-itinerary/index.html` 처럼 한 겹 더 들어가서 Vercel 이 404 를 냅니다.
-> ⚠️ 웹 업로드는 **한 번에 100개**까지입니다. 이 저장소는 94개라 한 번에 들어갑니다.
+> ⚠️ 웹 업로드는 **한 번에 100개**까지입니다. 이 저장소는 82개라 한 번에 들어갑니다.
 > ⚠️ 웹 드래그는 `.gitignore` · `.vercelignore` 같은 **점으로 시작하는 파일을 건너뜁니다.** 없어도 사이트는 정상 동작합니다. 필요하면 **Add file → Create new file** 로 이름을 직접 입력해 만드세요.
 
 ### 방법 B — 터미널 (폴더 통째로, 가장 확실함)
@@ -93,10 +93,10 @@ python3 -m http.server 4000    # http://localhost:4000
 
 ```
 index.html                  6KB   껍데기 + 메타태그 + 부팅 가드
-assets/app.*.js           196KB   React 앱 (해시 파일명 → 영구 캐시)
-assets/styles.*.css        47KB   Tailwind + 회색 테마 + 데스크톱 레이아웃
+assets/app.*.js           204KB   React 앱 (해시 파일명 → 영구 캐시)
+assets/styles.*.css        57KB   Tailwind + 회색 테마 + 데스크톱 레이아웃
 assets/img/*.webp                 장소 사진 9장 (상세창 열 때만 로드)
-assets/menu/*.webp                메뉴 사진 32장
+assets/menu/*.webp                메뉴 사진 31장
 og.jpg                    244KB   카카오톡·슬랙 공유 미리보기 (1200×630)
 favicon.svg / icon-*.png          파비콘, 홈 화면 아이콘
 site.webmanifest                  홈 화면에 추가하면 앱처럼 실행
