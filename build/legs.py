@@ -20,6 +20,16 @@ DAYS = {
   ('olle_market',  '18:50', 45, 60,'차량'),
   ('stay_night2',  '20:35',  0,  0, None),
  ],
+ # DAY 2 '예전 동선' (v3: 에코랜드 먼저). 화면의 '동선 변경' 버튼으로 바꿔 봄. id 끝의 _eco 는 장소는 같고 문구·시간만 다른 복사본
+ 'd2_eco':[
+  ('breakfast2_eco',  '08:30', 30, 50,'차량'),
+  ('ecoland_eco',     '09:50',150, 15,'차량'),
+  ('seongsanbom_eco', '12:35', 60,  5,'도보'),
+  ('donghwa_eco',     '13:40',150, 60,'차량'),
+  ('ssangdungi_eco',  '17:20', 90,  5,'도보'),
+  ('olle_market_eco', '18:55', 45, 60,'차량'),
+  ('stay_night2_eco', '20:40',  0,  0, None),
+ ],
  'd3':[                                       # 2026-10-08: 전체 30분 늦춤
   ('breakfast3',   '09:00', 40,  0, None),
   ('checkout3',    '09:40', 10, 40,'차량'),
@@ -42,9 +52,10 @@ SHORT_SELF={'ulsan_arrival':'제주공항','jamae':'자매국수','seoul_join':'
  'airport':'제주공항'}
 # 팝업 타임라인 오른쪽 위 문구를 '○○ 도착' 대신 바꾸고 싶을 때 (같은 장소에서 이어지는 항목)
 CAP={'breakfast2':'휴식 시작'}
-COLOR={'d1':('#E0906B','#F0BE9E'),'d2':('#5FAE99','#93CDBB'),'d3':('#7C9FD1','#AEC6E4')}
+COLOR={'d1':('#E0906B','#F0BE9E'),'d2':('#5FAE99','#93CDBB'),'d2_eco':('#5FAE99','#93CDBB'),'d3':('#7C9FD1','#AEC6E4')}
 
 import geomap as _g
+def base_id(p): return p[:-4] if p.endswith('_eco') else p   # _eco 복사본 → 원래 장소 id
 def m(t): h,i=t.split(':'); return int(h)*60+int(i)
 def hm(v): return f'{v//60:02d}:{v%60:02d}'
 def lab(v): return (f'{v//60}시간 {v%60}분' if v>=60 and v%60 else (f'{v//60}시간' if v>=60 else f'{v}분'))
@@ -60,7 +71,7 @@ def build():
                 segs=[(k,v,l,round(v*100.0/total,2)) for k,v,l in
                       (('stay',dur,'머무는 시간'),('slack',slack,'여유'),
                        ('move',mv,(mode or '')+' 이동')) if v>0]
-                e=nxt[1]; n=SHORT.get(nxt[0],nxt[0])
+                e=nxt[1]; n=SHORT.get(base_id(nxt[0]),nxt[0])
                 if mv>0:
                     d=hm(m(nxt[1])-mv)
                     dm=(mode or '차량')+' 출발'
@@ -72,13 +83,13 @@ def build():
                 if dur<=0: continue
                 segs=[('stay',dur,'머무는 시간',100.0)]; e=n=d=dp=dl=dm=None
             mp=None
-            if nxt and mv>0 and pid in _g.GEO and nxt[0] in _g.GEO:
-                GA,GB=_g.GEO[pid],_g.GEO[nxt[0]]
+            if nxt and mv>0 and base_id(pid) in _g.GEO and base_id(nxt[0]) in _g.GEO:
+                GA,GB=_g.GEO[base_id(pid)],_g.GEO[base_id(nxt[0])]
                 A=_g.prj(*GA); B=_g.prj(*GB)
                 dkm=_g.km(GA,GB)
                 near = (mode=='도보') or (dkm < _g.NEAR_KM)
                 mp={'k':'near' if near else 'map','vi':'🚶' if mode=='도보' else '🚐',
-                    'an':SHORT_SELF.get(pid,pid),'mvm':(mode or '차량'),'mvt':lab(mv),
+                    'an':SHORT_SELF.get(base_id(pid),pid),'mvm':(mode or '차량'),'mvt':lab(mv),
                     'km':_g.dist_label(dkm),
                     'nl':'바로 옆' if mode=='도보' else '아주 가까움'}
                 if near:
