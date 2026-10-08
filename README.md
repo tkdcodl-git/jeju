@@ -15,7 +15,7 @@
 4. **Commit changes** 를 누릅니다.
 
 > ⚠️ **폴더를 통째로 끌면 안 됩니다.** `jeju-itinerary/index.html` 처럼 한 겹 더 들어가서 Vercel 이 404 를 냅니다.
-> ⚠️ 웹 업로드는 **한 번에 100개**까지입니다. 이 저장소는 84개라 한 번에 들어갑니다.
+> ⚠️ 웹 업로드는 **한 번에 100개**까지입니다. 이 저장소는 74개라 한 번에 들어갑니다.
 > ⚠️ 웹 드래그는 `.gitignore` · `.vercelignore` 같은 **점으로 시작하는 파일을 건너뜁니다.** 없어도 사이트는 정상 동작합니다. 필요하면 **Add file → Create new file** 로 이름을 직접 입력해 만드세요.
 
 ### 방법 B — 터미널 (폴더 통째로, 가장 확실함)
@@ -30,6 +30,13 @@ git push -u origin main
 ```
 
 점 파일까지 그대로 올라가고 폴더 구조도 어긋나지 않습니다.
+
+---
+
+### 바뀐 파일만 올리기 (이미 저장소가 있을 때)
+
+업로드용 zip 을 풀고, 안에 있는 항목을 전부 선택해 저장소 첫 화면에 드래그 → **Commit changes**.
+같은 경로의 파일은 덮어써지고 나머지는 그대로 남습니다. `index.html` 과 `assets/app.*.js` 는 꼭 함께 올리세요.
 
 ---
 
@@ -96,17 +103,16 @@ index.html                  6KB   껍데기 + 메타태그 + 부팅 가드
 assets/app.*.js           204KB   React 앱 (해시 파일명 → 영구 캐시)
 assets/styles.*.css        57KB   Tailwind + 회색 테마 + 데스크톱 레이아웃
 assets/img/*.webp                 장소 사진 10장 (상세창 열 때만 로드)
-assets/menu/*.webp                메뉴 사진 31장
+assets/menu/*.webp                메뉴 사진 45장
 og.jpg                    244KB   카카오톡·슬랙 공유 미리보기 (1200×630)
 favicon.svg / icon-*.png          파비콘, 홈 화면 아이콘
 site.webmanifest                  홈 화면에 추가하면 앱처럼 실행
 vercel.json                       캐시·보안 헤더, 루트 폴백
 robots.txt / sitemap.xml
 set-domain.sh                     도메인 일괄 치환
-.vercelignore                     build/ · source/ · HANDOVER.md 는 배포 제외
+.vercelignore                     build/ · HANDOVER.md 는 배포 제외
 
 build/                            일정·지도 계산 스크립트 (legs.py · geomap.py)
-source/                           메뉴판·장소 사진 원본
 HANDOVER.md                       데이터 구조와 수정 규칙 — 이어서 작업할 때 이 문서부터
 ```
 
