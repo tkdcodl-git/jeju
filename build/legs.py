@@ -11,7 +11,8 @@ DAYS = {
   ('stay_night',   '20:35',  0,  0, None),
  ],
  'd2':[                                       # 2026-10-08 (4차): 10시 출발, 동화마을 먼저
-  ('breakfast2',   '09:30', 30, 65,'차량'),   # 애월 → 송당 약 1시간 5분
+  ('breakfast2',   '09:00', 30,  0, None),   # 2026-10-08 (5차): 아침 09:00
+  ('rest2',        '09:30', 30, 65,'차량'),   # 숙소 휴식 → 10:00 출발 · 애월 → 송당 약 1시간 5분
   ('seongsanbom',  '11:05', 60,  5,'도보'),   # 동화마을 안이라 걸어서 바로
   ('donghwa',      '12:10',120, 15,'차량'),   # 2시간 · 에코랜드까지 번영로 15분
   ('ecoland',      '14:25',120, 50,'차량'),   # 2시간 (매표마감 16:30) · 서귀포까지 50분
@@ -31,14 +32,16 @@ DAYS = {
 }
 SHORT={'jamae':'자매국수','seoul_join':'제주공항','activekart':'액티브카트','rainyday':'숙소',
  'suksungdo':'숙성도 애월점','hanaro':'하나로마트','stay_night':'숙소','stay_night2':'숙소',
- 'ecoland':'에코랜드','seongsanbom':'성산봄','donghwa':'동화마을','ssangdungi':'쌍둥이횟집','checkout3':'체크아웃','sanbangsan':'산방산',
+ 'ecoland':'에코랜드','seongsanbom':'성산봄','donghwa':'동화마을','ssangdungi':'쌍둥이횟집','rest2':'휴식','checkout3':'체크아웃','sanbangsan':'산방산',
  'oneandonly':'원앤온리','donsuyug':'돈수육','olle_market':'올레시장','airport':'제주공항',
  'departure':'탑승게이트'}
 SHORT_SELF={'ulsan_arrival':'제주공항','jamae':'자매국수','seoul_join':'제주공항',
  'activekart':'액티브카트','suksungdo':'숙성도','hanaro':'하나로마트','breakfast2':'숙소',
- 'ecoland':'에코랜드','seongsanbom':'성산봄','donghwa':'동화마을','ssangdungi':'쌍둥이횟집','breakfast3':'숙소','checkout3':'숙소',
+ 'ecoland':'에코랜드','seongsanbom':'성산봄','donghwa':'동화마을','ssangdungi':'쌍둥이횟집','rest2':'숙소','breakfast3':'숙소','checkout3':'숙소',
  'oneandonly':'원앤온리','sanbangsan':'산방산','donsuyug':'돈수육','olle_market':'올레시장',
  'airport':'제주공항'}
+# 팝업 타임라인 오른쪽 위 문구를 '○○ 도착' 대신 바꾸고 싶을 때 (같은 장소에서 이어지는 항목)
+CAP={'breakfast2':'휴식 시작'}
 COLOR={'d1':('#E0906B','#F0BE9E'),'d2':('#5FAE99','#93CDBB'),'d3':('#7C9FD1','#AEC6E4')}
 
 import geomap as _g
@@ -95,7 +98,7 @@ def build():
                     mp.update(ax=ad[0],ay=ad[1],bx=bd[0],by=bd[1],rd=rd,
                               vb='0 0 700 408',z=round(z,4),
                               tx=round(350-cx*z,1),ty=round(204-cy*z,1))
-            out[pid]={'s':st,'d':d,'dm':dm,'e':e,'n':n,'dp':dp,'dl':dl,'g':segs,'c':c,'mp':mp}
+            out[pid]={'s':st,'d':d,'dm':dm,'e':e,'n':n,'dp':dp,'dl':dl,'g':segs,'c':c,'mp':mp,'cap':CAP.get(pid) if e else None}
     return out
 
 def js(o):
@@ -104,6 +107,7 @@ def js(o):
         g=','.join('{k:"%s",l:"%s",m:"%s",w:"%s%%"}'%(k,l,lab(v),w) for k,v,l,w in x['g'])
         s=f's:"{x["s"]}"'
         if x['e']: s+=f',e:"{x["e"]}",n:"{x["n"]}"'
+        if x.get('cap'): s+=f',cap:"{x["cap"]}"'
         if x['d']: s+=f',d:"{x["d"]}",dm:"{x["dm"]}",dp:"{x["dp"]}%",dl:"{x["dl"]}%"'
         if x.get('mp'):
             p_=x['mp']
